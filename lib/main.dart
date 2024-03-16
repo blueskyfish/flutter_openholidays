@@ -22,8 +22,8 @@ class CalendarApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const StartPage(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
 }
-
