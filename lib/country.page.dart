@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:calendar_app/calendar.state.dart';
 import 'package:calendar_app/holiday.page.dart';
 import 'package:calendar_app/start.page.dart';
@@ -16,6 +14,7 @@ class CountryPage extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
+        elevation: 4.0,
         title: const Text('Choose Country'),
         actions: [
           IconButton(
@@ -24,8 +23,8 @@ class CountryPage extends StatelessWidget {
                   if (value != null && value) {
                     state.reset();
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => StartPage()),
-                      (Route<dynamic> route) => false);
+                        MaterialPageRoute(builder: (context) => StartPage()),
+                        (Route<dynamic> route) => false);
                   }
                 });
               },
@@ -78,6 +77,4 @@ class CountryPage extends StatelessWidget {
       ),
     );
   }
-
-  
 }

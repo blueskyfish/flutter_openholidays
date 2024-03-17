@@ -9,6 +9,7 @@ class StartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calendar Start'),
+        elevation: 4.0,
       ),
       body: const Center(
         child: Text('Start'),
@@ -17,11 +18,10 @@ class StartPage extends StatelessWidget {
         tooltip: 'Start',
         onPressed: () {
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const CountryPage(),
-            )
-          );
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CountryPage(),
+              ));
         },
         child: const Icon(Icons.arrow_forward),
       ),

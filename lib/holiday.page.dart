@@ -12,6 +12,7 @@ class HolidayPage extends StatelessWidget {
     final state = context.watch<CalendarState>();
     return Scaffold(
       appBar: AppBar(
+        elevation: 4.0,
         title: const Text('Holidays'),
         actions: [
           IconButton(
@@ -20,7 +21,8 @@ class HolidayPage extends StatelessWidget {
                 if (value != null && value) {
                   state.reset();
                   Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => const StartPage()),
+                      MaterialPageRoute(
+                          builder: (context) => const StartPage()),
                       (Route<dynamic> route) => false);
                 }
               });
