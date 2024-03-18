@@ -1,15 +1,21 @@
-import 'package:calendar_app/calendar.state.dart';
-import 'package:calendar_app/start.page.dart';
+import 'package:calendar_app/holiday-state.dart';
+import 'package:calendar_app/start/start.page.dart';
 import 'package:calendar_app/util/confirm.dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HolidayPage extends StatelessWidget {
+class HolidayPage extends StatefulWidget {
   const HolidayPage({super.key});
 
   @override
+  State<HolidayPage> createState() => _HolidayPageState();
+}
+
+class _HolidayPageState extends State<HolidayPage> {
+
+  @override
   Widget build(BuildContext context) {
-    final state = context.watch<CalendarState>();
+    final state = context.watch<HolidayState>();
     return Scaffold(
       appBar: AppBar(
         elevation: 4.0,

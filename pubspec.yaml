@@ -1,5 +1,5 @@
 name: calendar_app
-description: "Calendar Application"
+description: "A OpenHolidays Flutter Application"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -63,10 +63,34 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/country/al.svg
     - assets/images/country/at.svg
+    - assets/images/country/be.svg
+    - assets/images/country/bg.svg
+    - assets/images/country/ch.svg
+    - assets/images/country/cz.svg
     - assets/images/country/de.svg
+    - assets/images/country/ee.svg
+    - assets/images/country/en.svg
     - assets/images/country/fr.svg
+    - assets/images/country/hr.svg
+    - assets/images/country/hu.svg
+    - assets/images/country/ie.svg
     - assets/images/country/it.svg
+    - assets/images/country/li.svg
+    - assets/images/country/lt.svg
+    - assets/images/country/lu.svg
+    - assets/images/country/lv.svg
+    - assets/images/country/mc.svg
+    - assets/images/country/mt.svg
+    - assets/images/country/nl.svg
+    - assets/images/country/pl.svg
+    - assets/images/country/pt.svg
+    - assets/images/country/si.svg
+    - assets/images/country/sk.svg
+    - assets/images/country/sm.svg
+    - assets/images/country/va.svg
+    - assets/images/country/xx.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
