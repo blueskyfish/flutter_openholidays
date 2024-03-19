@@ -80,6 +80,7 @@ flutter:
     - assets/images/country/hu.svg
     - assets/images/country/ie.svg
     - assets/images/country/it.svg
+    - assets/images/country/lb.svg
     - assets/images/country/li.svg
     - assets/images/country/lt.svg
     - assets/images/country/lu.svg
@@ -90,6 +91,7 @@ flutter:
     - assets/images/country/pl.svg
     - assets/images/country/pt.svg
     - assets/images/country/si.svg
+    - assets/images/country/sl.svg
     - assets/images/country/sk.svg
     - assets/images/country/sm.svg
     - assets/images/country/sq.svg
