@@ -1,10 +1,7 @@
-
-import 'package:calendar_app/api/country.api.dart';
-import 'package:calendar_app/api/request-countries.dart';
-import 'package:calendar_app/country/country-state.dart';
-import 'package:calendar_app/holiday-service.dart';
-import 'package:calendar_app/holiday-state.dart';
-import 'package:calendar_app/holiday-page.dart';
+import 'package:calendar_app/common/icon-list-widgets.dart';
+import 'package:calendar_app/common/load-indicator-widget.dart';
+import 'package:calendar_app/state/holiday-service.dart';
+import 'package:calendar_app/state/holiday-state.dart';
 import 'package:calendar_app/start/start.page.dart';
 import 'package:calendar_app/util/confirm.dialog.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +13,6 @@ class CountryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<HolidayState>();
-    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 4.0,
@@ -37,26 +33,12 @@ class CountryPage extends StatelessWidget {
         ],
       ),
       body: _buildBody(context),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Contiue',
-        backgroundColor: state.hasCountrySelect() ? theme.colorScheme.inversePrimary : theme.disabledColor,
-        // ignore: prefer_const_constructors
-        child: const Icon(Icons.arrow_forward),
-        onPressed: () {
-          if (state.hasCountrySelect()) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HolidayPage(),
-              ),
-            );
-          }
-        },
-      ),
     );
   }
 
-  Widget _buildBody(BuildContext context,) {
+  Widget _buildBody(
+    BuildContext context,
+  ) {
     return FutureBuilder(
       future: HolidayService.loadCountryList(context),
       builder: (context, snapshot) {
@@ -64,43 +46,20 @@ class CountryPage extends StatelessWidget {
           return _buildListView(context, snapshot.data!);
         }
 
-        return const Center(
-          child: Column(
-            children: [
-              Text('Load country list...'),
-              CircularProgressIndicator()
-            ],
-          ),
+        return const LoadIndivator(
+          text: 'Load country list ...',
         );
       },
     );
   }
 
-  Widget _buildListView(BuildContext context, CountryState state) {
-    final theme = Theme.of(context);
+  Widget _buildListView(BuildContext context, IconListItemController controller) {
     return ListView.builder(
-      itemCount: state.length,
-      itemBuilder: (context, index) {
-        final country = state.countries[index];
-        return ListTile(
-          leading: SizedBox(
-            width: 48,
-            height: 48,
-            child: country.flag,
-          ),
-          title: Text(country.name),
-          tileColor: state.isCountrySelected(country) ? theme.colorScheme.inversePrimary : null,
-          onTap: () {
-            state.selectCountry(country);
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HolidayPage(),
-              ),
-            );
-          },
-        );
-      },
+      itemCount: controller.length,
+      itemBuilder: (context, index) => IconListTile(
+        index: index,
+        controller: controller,
+      ),
     );
   }
 }

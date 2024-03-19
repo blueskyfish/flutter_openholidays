@@ -1,6 +1,7 @@
-import 'package:calendar_app/start/start-state.dart';
-import 'package:calendar_app/country/country-page.dart';
-import 'package:calendar_app/holiday-service.dart';
+
+import 'package:calendar_app/common/icon-list-widgets.dart';
+import 'package:calendar_app/common/load-indicator-widget.dart';
+import 'package:calendar_app/state/holiday-service.dart';
 import 'package:flutter/material.dart';
 
 class StartPage extends StatelessWidget {
@@ -24,44 +25,31 @@ class StartPage extends StatelessWidget {
         if (snapshot.hasData) {
           return _buildPage(context, snapshot.data!);
         }
-        return const Center(
-          child: Column(
-            children: [Text('Load language list...'), CircularProgressIndicator()],
-          ),
+        return const LoadIndivator(
+          text: 'Load language list...',
         );
       },
     );
   }
 
-  Widget _buildPage(BuildContext context, StartState state) {
+  Widget _buildPage(BuildContext context, IconListItemController controller) {
+    var textStyle = Theme.of(context).textTheme.headlineLarge;
     return Column(
       children: [
-        const Text('Select the language'),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 12.0, 0, 12.0),
+          child: Text(
+            'Select the language',
+            style: textStyle,
+          ),
+        ),
         Expanded(
           child: ListView.builder(
-            itemCount: state.length,
-            itemBuilder: (context, index) {
-              final theme = Theme.of(context);
-              final lang = state.languages[index];
-              return ListTile(
-                leading: SizedBox(
-                  height: 48,
-                  width: 48,
-                  child: lang.flag,
-                ),
-                title: Text(lang.name),
-                tileColor: state.isSelected(lang) ? theme.colorScheme.inversePrimary : null,
-                onTap: () {
-                  state.selectLanguage(lang);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CountryPage(),
-                    ),
-                  );
-                },
-              );
-            },
+            itemCount: controller.length,
+            itemBuilder: (context, index) => IconListTile(
+              index: index,
+              controller: controller,
+            ),
           ),
         )
       ],

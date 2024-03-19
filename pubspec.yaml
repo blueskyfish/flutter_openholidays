@@ -68,11 +68,14 @@ flutter:
     - assets/images/country/be.svg
     - assets/images/country/bg.svg
     - assets/images/country/ch.svg
+    - assets/images/country/cs.svg
     - assets/images/country/cz.svg
     - assets/images/country/de.svg
     - assets/images/country/ee.svg
     - assets/images/country/en.svg
+    - assets/images/country/et.svg
     - assets/images/country/fr.svg
+    - assets/images/country/ga.svg
     - assets/images/country/hr.svg
     - assets/images/country/hu.svg
     - assets/images/country/ie.svg
@@ -89,6 +92,8 @@ flutter:
     - assets/images/country/si.svg
     - assets/images/country/sk.svg
     - assets/images/country/sm.svg
+    - assets/images/country/sq.svg
+    - assets/images/country/rm.svg
     - assets/images/country/va.svg
     - assets/images/country/xx.svg
 
