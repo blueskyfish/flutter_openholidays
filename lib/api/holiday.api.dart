@@ -11,7 +11,7 @@ class Holiday {
   final bool nationwide;
   final List<ShortName>? regions;
   final String? comment;
-  final String? qualitiy;
+  final String? quality;
 
   Holiday({
     required this.id,
@@ -22,7 +22,7 @@ class Holiday {
     required this.nationwide,
     this.regions,
     this.comment,
-    this.qualitiy,
+    this.quality,
   });
 
   factory Holiday.fromJson(Map<String, dynamic> data) {
@@ -35,7 +35,7 @@ class Holiday {
     final regions =
         opList(data, 'subdivisions', (row) => ShortName.fromJson(row));
     final comment = opString(data, 'comment');
-    final qualitiy = opString(data, 'quality');
+    final quality = opString(data, 'quality');
 
     return Holiday(
       id: id,
@@ -46,7 +46,7 @@ class Holiday {
       nationwide: nationwide,
       regions: regions,
       comment: comment,
-      qualitiy: qualitiy,
+      quality: quality,
     );
   }
 }

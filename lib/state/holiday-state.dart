@@ -1,5 +1,7 @@
 import 'package:calendar_app/api/country.api.dart';
+import 'package:calendar_app/api/holiday.api.dart';
 import 'package:calendar_app/api/language.api.dart';
+import 'package:calendar_app/common/holiday-list-widgets.dart';
 import 'package:calendar_app/common/icon-list-widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,8 +28,14 @@ class HolidayState extends ChangeNotifier {
   /// The list of countries from the open holidays api
   List<IconListItem> _countries = List.empty();
 
+  /// The list of holidays by the selected country in the selected language
+  List<HolidayListItem> _holidays = List.empty();
+
   /// The selected country code
   var _countryCode = '';
+
+  /// The selected holiday id
+  var _holidayId = '';
 
   /// Getter property for the selected language
   String get languageCode => _languageCode;
@@ -35,15 +43,21 @@ class HolidayState extends ChangeNotifier {
   /// Getter property for the selected country
   String get countryCode => _countryCode;
 
+  String get holidayId => _holidayId;
+
   /// Check if the list of countries is empty
   bool get isCountryListEmpty => _countries.isEmpty && !_backendRunning;
 
   /// Check if the map of languages is empty
   bool get isLanguageMapEmpty => _languageMap.values.isEmpty && !_backendRunning;
 
+  bool get isHolidayListEmpty => _holidays.isEmpty && !_backendRunning;
+
   List<IconListItem> get countries => _countries;
 
   List<IconListItem> get languages => List.of(_languageMap.values);
+
+  List<HolidayListItem> get holidays => _holidays;
 
   bool get backendRunning => _backendRunning;
 
@@ -97,6 +111,12 @@ class HolidayState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateHolidays(List<Holiday> holidays) {
+    _holidays = holidays.map((Holiday holiday) => HolidayListItem.from(holiday)).toList(growable: false);
+    _backendRunning = false;
+    notifyListeners();
+  }
+
   void selectLanguage(String language) {
     _languageCode = language;
     notifyListeners();
@@ -107,11 +127,37 @@ class HolidayState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void selectHoliday(HolidayListItem holiday) {
+    _holidayId = holiday.id;
+    notifyListeners();
+  }
+
   /// Reset to the default values
-  resetState() {
+  void resetState() {
+    print('reset all');
     _countryCode = _defaultCountryCode;
     _languageCode = _defaultLanguageCode;
     _languageMap = {};
     _countries = List.empty();
+    _holidayId = '';
+    _holidays = List.empty();
+  }
+
+  void resetHolidays() {
+    print('reset holidays');
+    _holidayId = '';
+    _holidays = List.empty();
+  }
+
+  void resetCounties() {
+    print('reset countries');
+    _countryCode = _defaultCountryCode;
+    _countries = List.empty();
+  }
+
+  void resetLanguages() {
+    print('reset languages');
+    _languageCode = _defaultCountryCode;
+    _languageMap = {};
   }
 }

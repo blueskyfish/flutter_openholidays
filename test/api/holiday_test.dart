@@ -50,6 +50,6 @@ void main() {
     expect(holiday.nationwide, false);
     expect(holiday.regions?.length, 5);
     expect(holiday.comment, null);
-    expect(holiday.qualitiy, null);
+    expect(holiday.quality, null);
   });
 }

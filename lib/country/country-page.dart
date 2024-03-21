@@ -1,9 +1,12 @@
+import 'package:calendar_app/common/backward-icon.dart';
 import 'package:calendar_app/common/icon-list-widgets.dart';
 import 'package:calendar_app/common/load-indicator-widget.dart';
+import 'package:calendar_app/common/restart-action-icon.dart';
 import 'package:calendar_app/state/holiday-service.dart';
 import 'package:calendar_app/state/holiday-state.dart';
 import 'package:calendar_app/start/start.page.dart';
 import 'package:calendar_app/util/confirm.dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,30 +18,34 @@ class CountryPage extends StatelessWidget {
     final state = context.watch<HolidayState>();
     return Scaffold(
       appBar: AppBar(
+        leading: BackwardIcon(
+          title: 'Open Language',
+          onBackward: () {
+            state.resetCounties();
+          },
+        ),
         elevation: 4.0,
         title: const Text('Choose Country'),
         actions: [
+          RestartActionIcon(
+            title: 'Restart',
+            onRestart: () {
+              state.resetState();
+            },
+          ),
           IconButton(
-              onPressed: () {
-                confirmDelete(context).then((bool? value) {
-                  if (value != null && value) {
-                    state.resetState();
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => const StartPage()), (Route<dynamic> route) => false);
-                  }
-                });
-              },
-              icon: const Icon(Icons.delete)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.refresh)),
+            onPressed: () {
+              state.resetCounties();
+            },
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
       body: _buildBody(context),
     );
   }
 
-  Widget _buildBody(
-    BuildContext context,
-  ) {
+  Widget _buildBody(BuildContext context) {
     return FutureBuilder(
       future: HolidayService.loadCountryList(context),
       builder: (context, snapshot) {

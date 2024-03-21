@@ -101,6 +101,7 @@ flutter:
     - assets/images/country/rm.svg
     - assets/images/country/va.svg
     - assets/images/country/xx.svg
+    - assets/images/holiday.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

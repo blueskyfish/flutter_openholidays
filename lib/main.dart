@@ -8,7 +8,7 @@ void main() {
   runApp(const CalendarApp());
 }
 
-class CalendarApp extends StatelessWidget {
+class CalendarApp extends StatelessWidget with RouteAware {
   const CalendarApp({super.key});
 
   // This widget is the root of your application.

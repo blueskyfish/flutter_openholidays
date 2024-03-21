@@ -41,7 +41,7 @@ class IconListItem {
   }
 }
 
-typedef IconListSelect = Function(IconListItem item);
+typedef IconListSelect = void Function(IconListItem item);
 
 class IconListItemController {
   final IconListSelect onSelect;
