@@ -2,13 +2,17 @@
 import 'package:calendar_app/common/icon-list-widgets.dart';
 import 'package:calendar_app/common/load-indicator-widget.dart';
 import 'package:calendar_app/state/holiday-service.dart';
+import 'package:calendar_app/state/holiday-state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var state = context.watch<HolidayState>();
+    state.initLocales(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calendar Start'),

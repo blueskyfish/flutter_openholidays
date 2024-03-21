@@ -14,10 +14,11 @@ class HolidayService {
   static const Map<String, String> headers = {'accept': 'application.json'};
 
   static Future<IconListItemController> loadLanguageList(BuildContext context) async {
-    final state = Provider.of<HolidayState>(context);
+    final state = Provider.of<HolidayState>(context, listen: false);
     if (state.isLanguageMapEmpty) {
+      state.startBackend();
       print('backend: load language list');
-      var url = Uri.parse('${state.baseUrl}/Languages?languageIsoCode=${state.language}');
+      var url = Uri.parse('${state.baseUrl}/Languages?languageIsoCode=${state.languageCode}');
       var response = await http.get(url, headers: headers);
       if (response.statusCode != 200) {
         throw Exception('Failed to load language list (status=${response.statusCode})');
@@ -28,7 +29,7 @@ class HolidayService {
       state.updateLanguages(languages);
     }
 
-    return IconListItemController(state.languages, state.language, (IconListItem language) {
+    return IconListItemController(state.languages, state.languageCode, (IconListItem language) {
       state.selectLanguage(language.code);
       Future.delayed(const Duration(milliseconds: 100), () {
         Navigator.push(
@@ -42,8 +43,9 @@ class HolidayService {
   }
 
   static Future<IconListItemController> loadCountryList(BuildContext context) async {
-    final state = Provider.of<HolidayState>(context);
+    final state = Provider.of<HolidayState>(context, listen: false);
     if (state.isCountryListEmpty) {
+      state.startBackend();
       print('backend: Load country list');
       var url = Uri.parse('${state.baseUrl}/Countries?languageIsoCode=$state.language');
       var response = await http.get(url, headers: headers);
@@ -57,7 +59,7 @@ class HolidayService {
     }
     return IconListItemController(
       state.countries,
-      state.selectCountryCode,
+      state.countryCode,
       (country) => state.selectCountry(country),
     );
   }

@@ -22,7 +22,7 @@ class CountryPage extends StatelessWidget {
               onPressed: () {
                 confirmDelete(context).then((bool? value) {
                   if (value != null && value) {
-                    state.reset();
+                    state.resetState();
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(builder: (context) => const StartPage()), (Route<dynamic> route) => false);
                   }
