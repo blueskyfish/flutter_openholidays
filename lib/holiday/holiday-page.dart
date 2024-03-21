@@ -1,6 +1,7 @@
 import 'package:calendar_app/common/backward-icon.dart';
 import 'package:calendar_app/common/holiday-list-widgets.dart';
 import 'package:calendar_app/common/load-indicator-widget.dart';
+import 'package:calendar_app/common/restart-action-icon.dart';
 import 'package:calendar_app/start/start.page.dart';
 import 'package:calendar_app/state/holiday-service.dart';
 import 'package:calendar_app/state/holiday-state.dart';
@@ -25,20 +26,16 @@ class HolidayPage extends StatelessWidget {
         ),
         title: const Text('Holiday List'),
         actions: [
+          RestartActionIcon(
+            title: 'Restart',
+            onRestart: () {
+              state.resetState();
+            },
+          ),
           IconButton(
-              onPressed: () {
-                confirmDelete(context).then((bool? value) {
-                  if (value != null && value) {
-                    state.resetState();
-                    Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => const StartPage()),
-                      (Route<dynamic> route) => false,
-                    );
-                  }
-                });
-              },
-              icon: const Icon(Icons.delete)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.refresh)),
+            onPressed: () {},
+            icon: const Icon(Icons.refresh),
+          ),
         ],
       ),
       body: _buildBody(context),

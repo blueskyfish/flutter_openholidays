@@ -1,8 +1,6 @@
 import 'package:calendar_app/api/holiday.api.dart';
 import 'package:calendar_app/api/short-name.api.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:svg_flutter/svg.dart';
 
 class HolidayListItem {
   final String id;

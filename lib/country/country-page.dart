@@ -4,9 +4,6 @@ import 'package:calendar_app/common/load-indicator-widget.dart';
 import 'package:calendar_app/common/restart-action-icon.dart';
 import 'package:calendar_app/state/holiday-service.dart';
 import 'package:calendar_app/state/holiday-state.dart';
-import 'package:calendar_app/start/start.page.dart';
-import 'package:calendar_app/util/confirm.dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +32,7 @@ class CountryPage extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              state.resetCounties();
+              // state.resetCounties();
             },
             icon: const Icon(Icons.refresh),
           ),

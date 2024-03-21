@@ -108,6 +108,7 @@ class HolidayService {
       (HolidayListItem item) {
         state.selectHoliday(item);
         /*
+        TODO Holiday Detail Page
         Future.delayed(const Duration(milliseconds: 100), () {
           Navigator.push(
             context,
